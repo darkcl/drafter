@@ -94,12 +94,15 @@ const char* blueprint =
   "\n"
   "      Hello World!\n";
 
-drafter_options options;
-options.format = DRAFTER_SERIALIZE_JSON;
-options.sourcemap = true;
+drafter_parse_options parseOptions;
+parseOptions.requireBlueprintName = true;
+
+drafter_serialize_options serializeOptions;
+serializeOptions.sourcemap = false;
+serializeOptions.format = DRAFTER_SERIALIZE_JSON;
 
 char* result = NULL;
-if (drafter_parse_blueprint_to(blueprint, &result, options) == 0) {
+if (drafter_parse_blueprint_to(blueprint, &result, parseOptions, serializeOptions) == 0) {
     printf("%s\n", result);
     free(result);
 }
